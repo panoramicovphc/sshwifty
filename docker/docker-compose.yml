@@ -19,7 +19,7 @@ services:
 
   sshwifty-srv:
     <<: *common-props
-    image: "niruix/sshwifty:latest"
+    image: "genshen/ssh-web-console:latest"
     container_name: "sshwifty-srv"
     hostname: "sshwifty-srv"
     networks:
