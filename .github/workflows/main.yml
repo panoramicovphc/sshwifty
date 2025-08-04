@@ -23,4 +23,4 @@ jobs:
         run: |
           echo "CF_TUNNEL_TOKEN=${{ secrets.CF_TUNNEL_TOKEN }}" > .env
       - name: "Run Docker Compose"
-        run: "docker-compose up -d"
+        run: "docker compose up -d"
