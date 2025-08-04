@@ -22,7 +22,7 @@ services:
     hostname: "sshwifty-srv"
     environment:
       DEBUG: 1
-    network-mode: "host"
+    network_mode: "host"
     ports:
       - "8182:8182"
 
@@ -33,4 +33,4 @@ services:
     hostname: "sshwifty-vpc"
     command: |
       tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
-    network-mode: "host"
+    network_mode: "host"
