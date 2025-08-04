@@ -23,17 +23,17 @@ services:
     container_name: "sshwifty-srv"
     hostname: "sshwifty-srv"
     networks:
-      stack-net: ""
+      stack-net: {}
 
   sshwifty-vpc:
     <<: *common-props
     image: "cloudflare/cloudflared:latest"
     container_name: "sshwifty-vpc"
     hostname: "sshwifty-vpc"
-    command: |
+    command: >
       tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
     networks:
-      stack-net: ""
+      stack-net: {}
 
 networks:
   stack-net:
