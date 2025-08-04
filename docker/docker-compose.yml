@@ -22,6 +22,8 @@ services:
     image: "niruix/sshwifty:0.3.11-beta-release"
     container_name: "sshwifty-srv"
     hostname: "sshwifty-srv"
+    environment:
+      DEBUG: 1
     networks:
       stack-net: {}
 
