@@ -1,0 +1,26 @@
+name: "pipeline"
+run-name: "${{ github.event_name }} by ${{ github.actor }} #${{ github.run_number }}.${{ github.run_attempt }}"
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for running the workflow"
+        required: true
+        default: "Manual trigger"
+
+jobs:
+
+  deploy-production:
+    name: "Deploy to Production"
+    runs-on: [ "panoramicovphc", "production" ]
+    steps:
+      - name: "Checkout repository"
+        uses: "actions/checkout@v4"
+      - name: "Create .env file"
+        run: |
+          echo "CF_TUNNEL_TOKEN=${{ secrets.CF_TUNNEL_TOKEN }}" > .env
+      - name: "Run Docker Compose"
+        run: "docker-compose up -d"

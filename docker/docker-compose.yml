@@ -1,0 +1,40 @@
+name: "panoramicovphc-sshwifty"
+
+x-common-props: &common-props
+  restart: "unless-stopped"
+  dns:
+    - "1.1.1.1"
+    - "4.4.4.4"
+  environment:
+    PUID: "1000"
+    PGID: "1000"
+    TZ: "America/Sao_Paulo"
+  volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+services:
+
+  sshwifty-srv:
+    <<: *common-props
+    image: "niruix/sshwifty:latest"
+    container_name: "sshwifty-srv"
+    hostname: "sshwifty-srv"
+    networks:
+      stack-net: ""
+
+  sshwifty-vpc:
+    <<: *common-props
+    image: "cloudflare/cloudflared:latest"
+    container_name: "sshwifty-vpc"
+    hostname: "sshwifty-vpc"
+    command: |
+      tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    networks:
+      stack-net: ""
+
+networks:
+  stack-net:
+    driver: "bridge"
