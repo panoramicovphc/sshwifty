@@ -20,10 +20,10 @@ jobs:
       - name: "Checkout repository"
         uses: "actions/checkout@v4"
       - name: "Create .env file"
-        run: >
+        run: |
           cd docker
           echo "CF_TUNNEL_TOKEN=${{ secrets.CF_TUNNEL_TOKEN }}" > .env
       - name: "Run Docker Compose"
-        run: >
+        run: |
           cd docker
           docker compose up -d
