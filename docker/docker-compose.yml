@@ -19,7 +19,7 @@ services:
 
   sshwifty-srv:
     <<: *common-props
-    image: "niruix/sshwifty:0.3.5-beta-release"
+    image: "niruix/sshwifty"
     container_name: "sshwifty-srv"
     hostname: "sshwifty-srv"
     stdin_open: true
