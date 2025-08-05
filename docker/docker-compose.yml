@@ -4,7 +4,7 @@ x-common-props: &common-props
   restart: "unless-stopped"
   dns:
     - "1.1.1.1"
-    - "4.4.4.4"
+    - "8.8.8.8"
   environment:
     PUID: "1000"
     PGID: "1000"
@@ -19,7 +19,7 @@ services:
 
   sshwifty-srv:
     <<: *common-props
-    image: "niruix/sshwifty:0.3.11-beta-release"
+    image: "niruix/sshwifty:0.3.5-beta-release"
     container_name: "sshwifty-srv"
     hostname: "sshwifty-srv"
     stdin_open: true
