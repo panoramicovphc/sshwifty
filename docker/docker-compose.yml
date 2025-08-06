@@ -24,8 +24,6 @@ services:
     hostname: "sshwifty-srv"
     stdin_open: true
     tty: true
-    environment:
-      DEBUG: 1
     networks:
       stack-net: {}
 
